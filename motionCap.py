@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 prev_frame = None  # Initial frame
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 
 if cap is None or not cap.isOpened():
     print("Unable to open video source ")
