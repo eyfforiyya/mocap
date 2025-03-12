@@ -69,10 +69,6 @@ with mp_hands.Hands(
         #         fingertip_landmarks,
         #         connections=None
         #     )
-#------------------------------------------------------------------------------------------------------------------------------------------------>         
-
-        # Red overlay 
-        tint = np.full_like(image, (50, 0, 0), dtype = np.uint8)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------>    
 
@@ -97,6 +93,9 @@ with mp_hands.Hands(
             # RGB Overlay
             tint = np.full_like(image, (50, 0, 0), dtype = np.uint8)
             blended = cv2.addWeighted(image, 0.5, tint, 0.5, 0)
+            
+            # https://chuoling.github.io/mediapipe/solutions/hands#python-solution-api
+            # https://ai.google.dev/edge/mediapipe/solutions/vision/hand_landmarker/python
             
         else:
             blended = image
