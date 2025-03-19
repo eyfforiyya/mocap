@@ -2,17 +2,25 @@
 
 import cv2
 import numpy as np
-from pynput.mouse import Controller
+from pynput.mouse import Controller, Listener
 
 print("Import success!")
 
 mouse = Controller() #this is the constructor, yayy! i understand it 
 
+# Create default image
 width, height = 1920, 1080
 image = np.full((720, 1280, 3), (255, 255, 255), dtype=np.uint8)
 
+# Function to get scroll input
+def on_scroll(x, y):
+    print(x, y)
+
+
+
 while True:
     #get mouse position
+
     mouse_x, mouse_y = mouse.position
     
     #normalize

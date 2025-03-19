@@ -90,8 +90,30 @@ with mp_hands.Hands(
                 connections=None
             )
             
+            # Depending on how many hands are detected (ideally 1 til 3), the RGB values will be calculated 
+            
+            # When only one hand is detected, all 3 color channels are mapped  to the coordinates of the index fingertip 
+            if len(index_fingertips) >= 1:
+                red = int(index_fingertips[0].x * 255)
+                green = int(index_fingertips[0].y * 255)
+                blue = int(((index_fingertips[0].z + 1) / 2) * 255)
+                
+            elif len(index_fingertips) >= 2:
+                red = int(index_fingertips[0].x * 255)
+                green = int(index_fingertips[1].y * 255)
+            
+            elif len(index_fingertips) >= 3:
+                red = int(index_fingertips[0].x * 255)
+                green = int(index_fingertips[1].y * 255)
+                blue = int(index_fingertips[2].x * 255)
+            
+                        
+            # red = int(index_fingertips[0].x * 255)
+            # green = int(index_fingertip.y * 255)
+            # blue = 255 - red
+            
             # RGB Overlay
-            tint = np.full_like(image, (50, 0, 0), dtype = np.uint8)
+            tint = np.full_like(image, (red, green, blue), dtype = np.uint8)
             blended = cv2.addWeighted(image, 0.5, tint, 0.5, 0)
             
             # https://chuoling.github.io/mediapipe/solutions/hands#python-solution-api
